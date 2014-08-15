@@ -184,7 +184,7 @@ uint32_t Hello::elements_len() {
 }
 
 Error::Error()
-    : ErrorCommon(of13::OFP_VERSION, of13::OFPT_HELLO) {
+    : ErrorCommon(of13::OFP_VERSION, of13::OFPT_ERROR) {
 }
 
 Error::Error(uint32_t xid, uint16_t err_type, uint16_t code)
@@ -276,7 +276,7 @@ of_error FeaturesRequest::unpack(uint8_t *buffer) {
 }
 
 FeaturesReply::FeaturesReply()
-    : FeaturesReplyCommon(of13::OFP_VERSION, of13::OFPT_HELLO) {
+    : FeaturesReplyCommon(of13::OFP_VERSION, of13::OFPT_FEATURES_REPLY) {
     this->length_ = sizeof(struct of13::ofp_switch_features);
 }
 
