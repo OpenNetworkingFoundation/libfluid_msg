@@ -322,8 +322,8 @@ bool PacketOutCommon::operator!=(const PacketOutCommon &other) const {
 
 void PacketOutCommon::actions(ActionList actions) {
     this->actions_ = actions;
-    this->length_ += actions_len();
     this->actions_len_ = actions.length();
+    this->length_ += actions_len();
 }
 
 void PacketOutCommon::add_action(Action &action) {
