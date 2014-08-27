@@ -367,6 +367,9 @@ public:
     of13::Match match() {
         return this->match_;
     }
+    of13::InstructionSet instructions() {
+        return this->instructions_;
+    }
     OXMTLV * get_oxm_field(uint8_t field);
     void command(uint8_t command){
         this->command_ = command;
