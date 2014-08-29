@@ -68,12 +68,12 @@ public:
     size_t pack(uint8_t *buffer);
     of_error unpack10(uint8_t *buffer);
     of_error unpack13(uint8_t *buffer);
-    std::list<Action*> action_list() {
-        return this->action_list_;
-    }
     friend void swap(ActionList& first, ActionList& second);
     uint16_t length() {
         return this->length_;
+    }
+    std::list<Action*> action_list(){
+        return this->action_list_;
     }
     void add_action(Action &action);
     void add_action(Action *act);
@@ -108,6 +108,9 @@ public:
     friend void swap(ActionSet& first, ActionSet& second);
     uint16_t length() {
         return this->length_;
+    }
+    std::set<Action*, comp_action_set_order> action_set(){
+        return this->action_set_;
     }
     void add_action(Action &action);
     void add_action(Action *act);

@@ -71,6 +71,9 @@ public:
     uint16_t length() {
         return this->length_;
     }
+    std::set<Instruction*, comp_inst_set_order> instruction_set(){
+        return this->instruction_set_;
+    }    
     void add_instruction(Instruction &inst);
     void add_instruction(Instruction *inst);
     void length(uint16_t length) {
