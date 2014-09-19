@@ -396,8 +396,8 @@ PacketIn::PacketIn()
     this->length_ = sizeof(struct of10::ofp_packet_in) - 2;
 }
 
-PacketIn::PacketIn(uint32_t xid, uint32_t buffer_id, uint16_t total_len,
-    uint16_t in_port, uint8_t reason)
+PacketIn::PacketIn(uint32_t xid, uint32_t buffer_id, uint16_t in_port,
+     uint16_t total_len, uint8_t reason)
     : PacketInCommon(of10::OFP_VERSION, of10::OFPT_PACKET_IN, xid, buffer_id,
           total_len, reason),
       in_port_(in_port) {
