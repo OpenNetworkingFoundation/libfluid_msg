@@ -110,9 +110,7 @@ class InPort: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    InPort() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    InPort();
     InPort(uint32_t value);
     ~InPort() {
     }
@@ -135,9 +133,7 @@ class InPhyPort: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    InPhyPort() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    InPhyPort();
     InPhyPort(uint32_t value);
     ~InPhyPort() {
     }
@@ -161,9 +157,7 @@ private:
     uint64_t value_;
     uint64_t mask_;
 public:
-    Metadata() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    Metadata();
     Metadata(uint64_t value);
     Metadata(uint64_t value, uint64_t mask);
     ~Metadata() {
@@ -194,9 +188,7 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    EthDst() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthDst();
     EthDst(EthAddress value);
     EthDst(EthAddress value, EthAddress mask);
     ~EthDst() {
@@ -227,9 +219,7 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    EthSrc() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthSrc();
     EthSrc(EthAddress value);
     EthSrc(EthAddress value, EthAddress mask);
     ~EthSrc() {
@@ -259,9 +249,7 @@ class EthType: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    EthType() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthType();
     EthType(uint16_t value);
     ~EthType() {
     }
@@ -285,9 +273,7 @@ private:
     uint16_t value_;
     uint16_t mask_;
 public:
-    VLANVid() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    VLANVid();
     VLANVid(uint16_t value);
     VLANVid(uint16_t value, uint16_t mask);
     ~VLANVid() {
@@ -317,9 +303,7 @@ class VLANPcp: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    VLANPcp() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    VLANPcp();
     VLANPcp(uint8_t value);
     ~VLANPcp() {
     }
@@ -342,9 +326,7 @@ class IPDSCP: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPDSCP() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPDSCP();
     IPDSCP(uint8_t value);
     ~IPDSCP() {
     }
@@ -367,9 +349,7 @@ class IPECN: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPECN() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPECN();
     IPECN(uint8_t value);
     ~IPECN() {
     }
@@ -392,9 +372,7 @@ class IPProto: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPProto() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPProto();
     IPProto(uint8_t value);
     ~IPProto() {
     }
@@ -418,11 +396,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv4Src()
-        : value_((uint32_t) 0),
-          mask_((uint32_t) 0) {
-        create_oxm_req(0x0800, 0, 0, 0);
-    }
+    IPv4Src();
     IPv4Src(IPAddress value);
     IPv4Src(IPAddress value, IPAddress mask);
     ~IPv4Src() {
@@ -453,11 +427,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv4Dst()
-        : value_((uint32_t) 0),
-          mask_((uint32_t) 0) {
-        create_oxm_req(0x0800, 0, 0, 0);
-    }
+    IPv4Dst();
     IPv4Dst(IPAddress value);
     IPv4Dst(IPAddress value, IPAddress mask);
     ~IPv4Dst() {
@@ -487,9 +457,7 @@ class TCPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    TCPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 6, 0);
-    }
+    TCPSrc();
     TCPSrc(uint16_t value);
     ~TCPSrc() {
     }
@@ -513,9 +481,7 @@ class TCPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    TCPDst() {
-        create_oxm_req(0x0800, 0x86dd, 6, 0);
-    }
+    TCPDst();
     TCPDst(uint16_t value);
     ~TCPDst() {
     }
@@ -538,9 +504,7 @@ class UDPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    UDPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 17, 0);
-    }
+    UDPSrc();
     UDPSrc(uint16_t value);
     ~UDPSrc() {
     }
@@ -563,9 +527,7 @@ class UDPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    UDPDst() {
-        create_oxm_req(0x0800, 0x86dd, 17, 0);
-    }
+    UDPDst();
     UDPDst(uint16_t value);
     ~UDPDst() {
     }
@@ -588,9 +550,7 @@ class SCTPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    SCTPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 132, 0);
-    }
+    SCTPSrc();
     SCTPSrc(uint16_t value);
     ~SCTPSrc() {
     }
@@ -614,9 +574,7 @@ class SCTPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    SCTPDst() {
-        create_oxm_req(0x0800, 0x86dd, 132, 0);
-    }
+    SCTPDst();
     SCTPDst(uint16_t value);
     ~SCTPDst() {
     }
@@ -639,9 +597,7 @@ class ICMPv4Code: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv4Code() {
-        create_oxm_req(0x0800, 0, 1, 0);
-    }
+    ICMPv4Code();
     ICMPv4Code(uint8_t value);
     ~ICMPv4Code() {
     }
@@ -664,9 +620,7 @@ class ICMPv4Type: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv4Type() {
-        create_oxm_req(0x0800, 0, 1, 0);
-    }
+    ICMPv4Type();
     ICMPv4Type(uint8_t value);
     ~ICMPv4Type() {
     }
@@ -689,9 +643,7 @@ class ARPOp: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    ARPOp() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPOp();
     ARPOp(uint16_t value);
     ~ARPOp() {
     }
@@ -715,9 +667,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    ARPSPA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPSPA();
     ARPSPA(IPAddress value);
     ARPSPA(IPAddress value, IPAddress mask);
     ~ARPSPA() {
@@ -749,9 +699,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    ARPTPA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPTPA();
     ARPTPA(IPAddress value);
     ARPTPA(IPAddress value, IPAddress mask);
     ~ARPTPA() {
@@ -782,9 +730,7 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    ARPSHA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPSHA();
     ARPSHA(EthAddress value);
     ARPSHA(EthAddress value, EthAddress mask);
     ~ARPSHA() {
@@ -812,9 +758,7 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    ARPTHA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPTHA();
     ARPTHA(EthAddress value);
     ARPTHA(EthAddress value, EthAddress mask);
     ~ARPTHA() {
@@ -843,9 +787,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv6Src() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Src();
     IPv6Src(IPAddress value);
     IPv6Src(IPAddress value, IPAddress mask);
     ~IPv6Src() {
@@ -876,9 +818,7 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv6Dst() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Dst();
     IPv6Dst(IPAddress value);
     IPv6Dst(IPAddress value, IPAddress mask);
     ~IPv6Dst() {
@@ -909,9 +849,7 @@ private:
     uint32_t value_;
     uint32_t mask_;
 public:
-    IPV6Flabel() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPV6Flabel();
     IPV6Flabel(uint32_t value);
     IPV6Flabel(uint32_t value, uint32_t mask);
     ~IPV6Flabel() {
@@ -941,9 +879,7 @@ class ICMPv6Type: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv6Type() {
-        create_oxm_req(0, 0x86dd, 58, 0);
-    }
+    ICMPv6Type();
     ICMPv6Type(uint8_t value);
     ~ICMPv6Type() {
     }
@@ -966,9 +902,7 @@ class ICMPv6Code: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv6Code() {
-        create_oxm_req(0, 0x86dd, 58, 0);
-    }
+    ICMPv6Code();
     ICMPv6Code(uint8_t value);
     ~ICMPv6Code() {
     }
@@ -991,9 +925,7 @@ class IPv6NDTarget: public OXMTLV {
 private:
     IPAddress value_;
 public:
-    IPv6NDTarget() {
-        create_oxm_req(0, 0x86dd, 58, 135);
-    }
+    IPv6NDTarget();
     IPv6NDTarget(IPAddress value);
     ~IPv6NDTarget() {
     }
@@ -1016,9 +948,7 @@ class IPv6NDSLL: public OXMTLV {
 private:
     EthAddress value_;
 public:
-    IPv6NDSLL() {
-        create_oxm_req(0, 0x86dd, 58, 136);
-    }
+    IPv6NDSLL();
     IPv6NDSLL(EthAddress value);
     ~IPv6NDSLL() {
     }
@@ -1041,9 +971,7 @@ class IPv6NDTLL: public OXMTLV {
 private:
     EthAddress value_;
 public:
-    IPv6NDTLL() {
-        create_oxm_req(0, 0x86dd, 58, 136);
-    }
+    IPv6NDTLL();
     IPv6NDTLL(EthAddress value);
     ~IPv6NDTLL() {
     }
@@ -1066,9 +994,7 @@ class MPLSLabel: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    MPLSLabel() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSLabel();
     MPLSLabel(uint32_t value);
     ~MPLSLabel() {
     }
@@ -1091,9 +1017,7 @@ class MPLSTC: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    MPLSTC() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSTC();
     MPLSTC(uint8_t value);
     ~MPLSTC() {
     }
@@ -1116,9 +1040,7 @@ class MPLSBOS: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    MPLSBOS() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSBOS();
     MPLSBOS(uint8_t value);
     ~MPLSBOS() {
     }
@@ -1142,9 +1064,7 @@ private:
     uint32_t value_;
     uint32_t mask_;
 public:
-    PBBIsid() {
-        create_oxm_req(0x88E7, 0, 0, 0);
-    }
+    PBBIsid();
     PBBIsid(uint32_t value);
     PBBIsid(uint32_t value, uint32_t mask);
     ~PBBIsid() {
@@ -1175,9 +1095,7 @@ private:
     uint64_t value_;
     uint64_t mask_;
 public:
-    TUNNELId() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    TUNNELId();
     TUNNELId(uint64_t value);
     TUNNELId(uint64_t value, uint64_t mask);
     ~TUNNELId() {
@@ -1202,9 +1120,7 @@ private:
     uint16_t value_;
     uint16_t mask_;
 public:
-    IPv6Exthdr() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Exthdr();
     IPv6Exthdr(uint16_t value);
     IPv6Exthdr(uint16_t value, uint16_t mask);
     ~IPv6Exthdr() {

@@ -128,6 +128,12 @@ uint8_t OXMTLV::oxm_length(uint32_t header) {
     return ((header) & 0xff);
 }
 
+InPort::InPort()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IN_PORT, false,
+        of13::OFP_OXM_IN_PORT_LEN) {
+    create_oxm_req(0, 0, 0, 0);
+}
+
 InPort::InPort(uint32_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IN_PORT, false,
         of13::OFP_OXM_IN_PORT_LEN) {
@@ -163,6 +169,12 @@ of_error InPort::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh32(*((uint32_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+InPhyPort::InPhyPort()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IN_PHY_PORT, false,
+        of13::OFP_OXM_IN_PHY_PORT_LEN) {
+    create_oxm_req(0, 0, 0, 0);
 }
 
 InPhyPort::InPhyPort(uint32_t value)
@@ -201,6 +213,12 @@ of_error InPhyPort::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh32(*((uint32_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+Metadata::Metadata()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_METADATA, false,
+        of13::OFP_OXM_METADATA_LEN) {
+    create_oxm_req(0, 0, 0, 0);
 }
 
 Metadata::Metadata(uint64_t value)
@@ -261,6 +279,12 @@ of_error Metadata::unpack(uint8_t *buffer) {
             *((uint64_t*) (buffer + of13::OFP_OXM_HEADER_LEN + len)));
     }
     return 0;
+}
+
+EthDst::EthDst()
+      : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_DST, false,
+          OFP_ETH_ALEN) {
+    create_oxm_req(0, 0, 0, 0);
 }
 
 EthDst::EthDst(EthAddress value)
@@ -324,6 +348,12 @@ of_error EthDst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+EthSrc::EthSrc()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_SRC, false,
+          OFP_ETH_ALEN) {
+    create_oxm_req(0, 0, 0, 0);
+}
+
 EthSrc::EthSrc(EthAddress value)
     : mask_("ff:ff:ff:ff:ff:ff"),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_SRC, false,
@@ -385,6 +415,12 @@ of_error EthSrc::unpack(uint8_t *buffer) {
     return 0;
 }
 
+EthType::EthType()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_TYPE, false,
+        of13::OFP_OXM_ETH_TYPE_LEN) {
+    create_oxm_req(0, 0, 0, 0);
+}
+
 EthType::EthType(uint16_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_TYPE, false,
         of13::OFP_OXM_ETH_TYPE_LEN) {
@@ -421,6 +457,12 @@ of_error EthType::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh16(*((uint16_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+VLANVid::VLANVid()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_VID, false,
+          of13::OFP_OXM_VLAN_VID_LEN) {
+    create_oxm_req(0, 0, 0, 0);
 }
 
 VLANVid::VLANVid(uint16_t value)
@@ -483,6 +525,12 @@ of_error VLANVid::unpack(uint8_t *buffer) {
     return 0;
 }
 
+VLANPcp::VLANPcp()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_PCP, false,
+        of13::OFP_OXM_VLAN_PCP_LEN) {
+    create_oxm_req(0, 0, 0, 0);
+}
+
 VLANPcp::VLANPcp(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_PCP, false,
         of13::OFP_OXM_VLAN_PCP_LEN) {
@@ -518,6 +566,12 @@ of_error VLANPcp::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = *((uint8_t*) (buffer + of13::OFP_OXM_HEADER_LEN));
     return 0;
+}
+
+IPDSCP::IPDSCP()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IP_DSCP, false,
+        of13::OFP_OXM_IP_DSCP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 0, 0);
 }
 
 IPDSCP::IPDSCP(uint8_t value)
@@ -557,6 +611,12 @@ of_error IPDSCP::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPECN::IPECN()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IP_ECN, false,
+        of13::OFP_OXM_IP_DSCP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 0, 0);
+}
+
 IPECN::IPECN(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IP_ECN, false,
         of13::OFP_OXM_IP_DSCP_LEN) {
@@ -594,6 +654,12 @@ of_error IPECN::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPProto::IPProto()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IP_PROTO, false,
+        of13::OFP_OXM_IP_PROTO_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 0, 0);
+}
+
 IPProto::IPProto(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IP_PROTO, false,
         of13::OFP_OXM_IP_PROTO_LEN) {
@@ -629,6 +695,14 @@ of_error IPProto::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = *(buffer + of13::OFP_OXM_HEADER_LEN);
     return 0;
+}
+
+IPv4Src::IPv4Src()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV4_SRC, false,
+          of13::OFP_OXM_IPV4_LEN),
+      value_((uint32_t) 0),
+      mask_((uint32_t) 0) {
+    create_oxm_req(0x0800, 0, 0, 0);
 }
 
 IPv4Src::IPv4Src(IPAddress value)
@@ -696,6 +770,14 @@ of_error IPv4Src::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPv4Dst::IPv4Dst()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV4_DST, false,
+          of13::OFP_OXM_IPV4_LEN),
+      value_((uint32_t) 0),
+      mask_((uint32_t) 0) {
+    create_oxm_req(0x0800, 0, 0, 0);
+}
+
 IPv4Dst::IPv4Dst(IPAddress value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV4_DST, false,
           of13::OFP_OXM_IPV4_LEN),
@@ -761,6 +843,12 @@ of_error IPv4Dst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+TCPSrc::TCPSrc()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TCP_SRC, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 6, 0);
+}
+
 TCPSrc::TCPSrc(uint16_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TCP_SRC, false,
         of13::OFP_OXM_TP_LEN) {
@@ -797,6 +885,12 @@ of_error TCPSrc::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh16(*((uint16_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+TCPDst::TCPDst()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TCP_DST, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 6, 0);
 }
 
 TCPDst::TCPDst(uint16_t value)
@@ -837,6 +931,12 @@ of_error TCPDst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+UDPSrc::UDPSrc()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_UDP_SRC, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 17, 0);
+}
+
 UDPSrc::UDPSrc(uint16_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_UDP_SRC, false,
         of13::OFP_OXM_TP_LEN) {
@@ -873,6 +973,12 @@ of_error UDPSrc::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh16(*((uint16_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+UDPDst::UDPDst()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_UDP_DST, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 17, 0);
 }
 
 UDPDst::UDPDst(uint16_t value)
@@ -913,6 +1019,12 @@ of_error UDPDst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+SCTPSrc::SCTPSrc()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_SCTP_SRC, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 132, 0);
+}
+
 SCTPSrc::SCTPSrc(uint16_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_SCTP_SRC, false,
         of13::OFP_OXM_TP_LEN) {
@@ -949,6 +1061,12 @@ of_error SCTPSrc::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh16(*((uint16_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+SCTPDst::SCTPDst()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_SCTP_DST, false,
+        of13::OFP_OXM_TP_LEN) {
+    create_oxm_req(0x0800, 0x86dd, 132, 0);
 }
 
 SCTPDst::SCTPDst(uint16_t value)
@@ -989,6 +1107,12 @@ of_error SCTPDst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+ICMPv4Type::ICMPv4Type()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_CODE, false,
+        of13::OFP_OXM_ICMP_TYPE_LEN) {
+    create_oxm_req(0x0800, 0, 1, 0);
+}
+
 ICMPv4Type::ICMPv4Type(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_CODE, false,
         of13::OFP_OXM_ICMP_TYPE_LEN) {
@@ -1025,6 +1149,12 @@ of_error ICMPv4Type::unpack(uint8_t *buffer) {
     this->value_ = *((uint8_t*) (buffer + of13::OFP_OXM_HEADER_LEN));
     return 0;
 
+}
+
+ICMPv4Code::ICMPv4Code()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_CODE, false,
+        of13::OFP_OXM_ICMP_CODE_LEN) {
+    create_oxm_req(0x0800, 0, 1, 0);
 }
 
 ICMPv4Code::ICMPv4Code(uint8_t value)
@@ -1064,6 +1194,12 @@ of_error ICMPv4Code::unpack(uint8_t *buffer) {
     return 0;
 }
 
+ARPOp::ARPOp()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_OP, false,
+        of13::OFP_OXM_ARP_OP_LEN) {
+    create_oxm_req(0x0806, 0, 0, 0);
+}
+
 ARPOp::ARPOp(uint16_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_OP, false,
         of13::OFP_OXM_ARP_OP_LEN) {
@@ -1100,6 +1236,12 @@ of_error ARPOp::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh16(*((uint16_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+ARPSPA::ARPSPA()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_SPA, false,
+        of13::OFP_OXM_IPV4_LEN) {
+    create_oxm_req(0x0806, 0, 0, 0);
 }
 
 ARPSPA::ARPSPA(IPAddress value)
@@ -1160,6 +1302,12 @@ of_error ARPSPA::unpack(uint8_t *buffer) {
         this->mask_ = IPAddress(ip_mask);
     }
     return 0;
+}
+
+ARPTPA::ARPTPA()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_TPA, false,
+        of13::OFP_OXM_IPV4_LEN) {
+    create_oxm_req(0x0806, 0, 0, 0);
 }
 
 ARPTPA::ARPTPA(IPAddress value)
@@ -1223,6 +1371,13 @@ of_error ARPTPA::unpack(uint8_t *buffer) {
     return 0;
 }
 
+ARPSHA::ARPSHA()
+    : mask_("ff:ff:ff:ff:ff:ff"),
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_SHA, false,
+          OFP_ETH_ALEN) {
+    create_oxm_req(0x0806, 0, 0, 0);
+}
+
 ARPSHA::ARPSHA(EthAddress value)
     : mask_("ff:ff:ff:ff:ff:ff"),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_SHA, false,
@@ -1282,6 +1437,13 @@ of_error ARPSHA::unpack(uint8_t *buffer) {
         this->mask_ = EthAddress(v);
     }
     return 0;
+}
+
+ARPTHA::ARPTHA()
+    : mask_("ff:ff:ff:ff:ff:ff"),
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ARP_THA, false,
+          OFP_ETH_ALEN) {
+    create_oxm_req(0x0806, 0, 0, 0);
 }
 
 ARPTHA::ARPTHA(EthAddress value)
@@ -1345,6 +1507,12 @@ of_error ARPTHA::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPv6Src::IPv6Src()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_SRC, false,
+        of13::OFP_OXM_IPV6_LEN) {
+    create_oxm_req(0, 0x86dd, 0, 0);
+}
+
 IPv6Src::IPv6Src(IPAddress value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_SRC, false,
         of13::OFP_OXM_IPV6_LEN) {
@@ -1404,6 +1572,12 @@ of_error IPv6Src::unpack(uint8_t *buffer) {
         this->mask_ = IPAddress(*ip);
     }
     return 0;
+}
+
+IPv6Dst::IPv6Dst()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_DST, false,
+        of13::OFP_OXM_IPV6_LEN) {
+    create_oxm_req(0, 0x86dd, 0, 0);
 }
 
 IPv6Dst::IPv6Dst(IPAddress value)
@@ -1466,6 +1640,12 @@ of_error IPv6Dst::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPV6Flabel::IPV6Flabel()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_FLABEL, false,
+        of13::OFP_OXM_IPV6_FLABEL_LEN) {
+    create_oxm_req(0, 0x86dd, 0, 0);
+}
+
 IPV6Flabel::IPV6Flabel(uint32_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_FLABEL, false,
         of13::OFP_OXM_IPV6_FLABEL_LEN) {
@@ -1526,6 +1706,12 @@ of_error IPV6Flabel::unpack(uint8_t *buffer) {
     return 0;
 }
 
+ICMPv6Type::ICMPv6Type()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV6_TYPE, false,
+        of13::OFP_OXM_ICMP_TYPE_LEN) {
+    create_oxm_req(0, 0x86dd, 58, 0);
+}
+
 ICMPv6Type::ICMPv6Type(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV6_TYPE, false,
         of13::OFP_OXM_ICMP_TYPE_LEN) {
@@ -1563,6 +1749,12 @@ of_error ICMPv6Type::unpack(uint8_t *buffer) {
     return 0;
 }
 
+ICMPv6Code::ICMPv6Code()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV6_CODE, false,
+        of13::OFP_OXM_ICMP_CODE_LEN) {
+    create_oxm_req(0, 0x86dd, 58, 0);
+}
+
 ICMPv6Code::ICMPv6Code(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV6_CODE, false,
         of13::OFP_OXM_ICMP_CODE_LEN) {
@@ -1598,6 +1790,12 @@ of_error ICMPv6Code::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = *((uint8_t*) (buffer + of13::OFP_OXM_HEADER_LEN));
     return 0;
+}
+
+IPv6NDTarget::IPv6NDTarget()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_ND_TARGET,
+        false, of13::OFP_OXM_IPV6_LEN) {
+    create_oxm_req(0, 0x86dd, 58, 135);
 }
 
 IPv6NDTarget::IPv6NDTarget(IPAddress value)
@@ -1640,6 +1838,12 @@ of_error IPv6NDTarget::unpack(uint8_t *buffer) {
     return 0;
 }
 
+IPv6NDTLL::IPv6NDTLL()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_ND_TLL, false,
+        OFP_ETH_ALEN) {
+    create_oxm_req(0, 0x86dd, 58, 136);
+}
+
 IPv6NDTLL::IPv6NDTLL(EthAddress value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_ND_TLL, false,
         OFP_ETH_ALEN) {
@@ -1678,6 +1882,12 @@ of_error IPv6NDTLL::unpack(uint8_t *buffer) {
     memcpy(v, buffer + of13::OFP_OXM_HEADER_LEN, OFP_ETH_ALEN);
     this->value_ = EthAddress(v);
     return 0;
+}
+
+IPv6NDSLL::IPv6NDSLL()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_ND_SLL, false,
+        OFP_ETH_ALEN) {
+    create_oxm_req(0, 0x86dd, 58, 136);
 }
 
 IPv6NDSLL::IPv6NDSLL(EthAddress value)
@@ -1720,6 +1930,12 @@ of_error IPv6NDSLL::unpack(uint8_t *buffer) {
     return 0;
 }
 
+MPLSLabel::MPLSLabel()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_MPLS_LABEL, false,
+        of13::OFP_OXM_MPLS_LABEL_LEN) {
+    create_oxm_req(0x8847, 0x8848, 0, 0);
+}
+
 MPLSLabel::MPLSLabel(uint32_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_MPLS_LABEL, false,
         of13::OFP_OXM_MPLS_LABEL_LEN) {
@@ -1756,6 +1972,12 @@ of_error MPLSLabel::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = ntoh32(*((uint32_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     return 0;
+}
+
+MPLSTC::MPLSTC()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_MPLS_TC, false,
+        of13::OFP_OXM_MPLS_TC_LEN) {
+    create_oxm_req(0x8847, 0x8848, 0, 0);
 }
 
 MPLSTC::MPLSTC(uint8_t value)
@@ -1795,6 +2017,12 @@ of_error MPLSTC::unpack(uint8_t *buffer) {
     return 0;
 }
 
+MPLSBOS::MPLSBOS()
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_MPLS_BOS, false,
+        of13::OFP_OXM_MPLS_BOS_LEN) {
+    create_oxm_req(0x8847, 0x8848, 0, 0);
+}
+
 MPLSBOS::MPLSBOS(uint8_t value)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_MPLS_BOS, false,
         of13::OFP_OXM_MPLS_BOS_LEN) {
@@ -1830,6 +2058,13 @@ of_error MPLSBOS::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
     this->value_ = *((uint8_t*) (buffer + of13::OFP_OXM_HEADER_LEN));
     return 0;
+}
+
+PBBIsid::PBBIsid()
+    : mask_(0),
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_PBB_ISID, false,
+          of13::OFP_OXM_IPV6_PBB_ISID_LEN) {
+    create_oxm_req(0x88E7, 0, 0, 0);
 }
 
 PBBIsid::PBBIsid(uint32_t value)
@@ -1892,6 +2127,13 @@ of_error PBBIsid::unpack(uint8_t *buffer) {
     return 0;
 }
 
+TUNNELId::TUNNELId()
+    : mask_(0),
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TUNNEL_ID, false,
+          of13::OFP_OXM_METADATA_LEN) {
+    create_oxm_req(0, 0, 0, 0);
+}
+
 TUNNELId::TUNNELId(uint64_t value)
     : mask_(0),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TUNNEL_ID, false,
@@ -1949,6 +2191,13 @@ of_error TUNNELId::unpack(uint8_t *buffer) {
             *((uint64_t*) (buffer + (of13::OFP_OXM_HEADER_LEN + len))));
     }
     return 0;
+}
+
+IPv6Exthdr::IPv6Exthdr()
+    : mask_(0),
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_VID, false,
+          of13::OFP_OXM_VLAN_VID_LEN) {
+    create_oxm_req(0, 0x86dd, 0, 0);
 }
 
 IPv6Exthdr::IPv6Exthdr(uint16_t value)
