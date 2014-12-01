@@ -303,13 +303,16 @@ public:
     bool operator!=(const PacketIn &other) const;
     uint8_t* pack();
     of_error unpack(uint8_t *buffer);
-    uint8_t table_id() {
+    uint8_t table_id() const {
         return this->table_id_;
     }
-    uint64_t cookie() {
+    uint64_t cookie() const {
         return this->cookie_;
     }
-    of13::Match match() {
+    of13::Match& match() {
+        return this->match_;
+    }
+    const of13::Match& match() const {
         return this->match_;
     }
     ;

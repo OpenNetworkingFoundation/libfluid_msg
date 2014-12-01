@@ -326,19 +326,19 @@ public:
     virtual ~PacketInCommon();
     bool operator==(const PacketInCommon &other) const;
     bool operator!=(const PacketInCommon &other) const;
-    uint32_t buffer_id() {
+    uint32_t buffer_id() const {
         return this->buffer_id_;
     }
     uint16_t total_len() {
         return this->total_len_;
     }
-    uint8_t reason() {
+    uint8_t reason() const {
         return this->reason_;
     }
-    void* data() {
+    void* data() const {
         return this->data_;
     }
-    size_t data_len() {
+    size_t data_len() const {
         return this->data_len_;
     }
     void buffer_id(uint32_t buffer_id) {
