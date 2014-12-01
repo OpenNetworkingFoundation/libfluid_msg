@@ -214,7 +214,7 @@ private:
 public:
     ClearActions()
         : Instruction(of13::OFPIT_CLEAR_ACTIONS,
-              sizeof(struct of13::ofp_instruction) + 4),
+              sizeof(struct of13::ofp_instruction)),
           set_order_(30) {
     }
     ~ClearActions() {
