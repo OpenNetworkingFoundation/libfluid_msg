@@ -52,7 +52,7 @@ OXMTLV::OXMTLV(uint16_t class_, uint8_t field, bool has_mask, uint8_t length)
     : class__(class_),
       field_(field),
       has_mask_(has_mask),
-      length_(length) {
+      length_(has_mask?length<<1:length) {
 }
 
 bool OXMTLV::equals(const OXMTLV &other) {
