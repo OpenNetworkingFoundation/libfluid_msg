@@ -52,7 +52,7 @@ OXMTLV::OXMTLV(uint16_t class_, uint8_t field, bool has_mask, uint8_t length)
     : class__(class_),
       field_(field),
       has_mask_(has_mask),
-      length_(length) {
+      length_(has_mask?length<<1:length) {
 }
 
 bool OXMTLV::equals(const OXMTLV &other) {
@@ -990,7 +990,7 @@ of_error SCTPDst::unpack(uint8_t *buffer) {
 }
 
 ICMPv4Type::ICMPv4Type(uint8_t value)
-    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_CODE, false,
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_TYPE, false,
         of13::OFP_OXM_ICMP_TYPE_LEN) {
     this->value_ = value;
     create_oxm_req(0x0800, 0, 1, 0);
@@ -2296,13 +2296,13 @@ bool Match::check_dup(OXMTLV *tlv) {
 }
 
 void Match::add_oxm_field(OXMTLV &tlv) {
-    this->curr_tlvs_.push_back(tlv.field());
+    if (!check_dup(&tlv)) this->curr_tlvs_.push_back(tlv.field());
     this->oxm_tlvs_[tlv.field()] = tlv.clone();
     this->length_ += of13::OFP_OXM_HEADER_LEN + tlv.length();
 }
 
 void Match::add_oxm_field(OXMTLV* tlv) {
-    this->curr_tlvs_.push_back(tlv->field());
+    if (!check_dup(tlv)) this->curr_tlvs_.push_back(tlv->field());
     this->oxm_tlvs_[tlv->field()] = tlv;
     this->length_ += of13::OFP_OXM_HEADER_LEN + tlv->length();
 }
