@@ -2260,16 +2260,18 @@ of_error IPv6Exthdr::unpack(uint8_t *buffer) {
     return 0;
 }
 
-Match::Match()
-    : oxm_tlvs_(OXM_NUM) {
+Match::Match() {
+    //: oxm_tlvs_(OXM_NUM) {
     this->type_ = of13::OFPMT_OXM;
     this->length_ = sizeof(struct of13::ofp_match) - 4;
+    memset(oxm_tlvs_, 0, sizeof(oxm_tlvs_));
 }
 
 Match::Match(const Match &match) {
     this->type_ = match.type_;
     this->length_ = 4;
-    this->oxm_tlvs_.reserve(OXM_NUM);
+    memset(oxm_tlvs_, 0, sizeof(oxm_tlvs_));
+    //this->oxm_tlvs_.reserve(OXM_NUM);
     for (std::vector<uint8_t>::const_iterator it = match.curr_tlvs_.begin();
         it != match.curr_tlvs_.end(); ++it) {
         this->curr_tlvs_.push_back((*it));

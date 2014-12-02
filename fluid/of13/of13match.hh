@@ -1151,7 +1151,7 @@ private:
     /*Current tlvs present by field*/
     std::vector<uint8_t> curr_tlvs_;
     /*Vector of OXM TLVs*/
-    std::vector<OXMTLV*> oxm_tlvs_;
+    OXMTLV* oxm_tlvs_[OXM_NUM];
 public:
     Match();
     Match(const Match &match);
@@ -1159,7 +1159,7 @@ public:
     ~Match();
     bool operator==(const Match &other) const;
     bool operator!=(const Match &other) const;
-    void swap(Match& first, Match& second);
+    static void swap(Match& first, Match& second);
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
     OXMTLV *oxm_field(uint8_t field);
