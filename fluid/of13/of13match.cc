@@ -1114,7 +1114,7 @@ ICMPv4Type::ICMPv4Type()
 }
 
 ICMPv4Type::ICMPv4Type(uint8_t value)
-    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_CODE, false,
+    : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ICMPV4_TYPE, false,
         of13::OFP_OXM_ICMP_TYPE_LEN) {
     this->value_ = value;
     create_oxm_req(0x0800, 0, 1, 0);
