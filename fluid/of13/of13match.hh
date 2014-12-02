@@ -65,24 +65,24 @@ public:
     virtual bool operator==(const OXMTLV &other) const;
     virtual bool operator!=(const OXMTLV &other) const;
     virtual OXMTLV& operator=(const OXMTLV& field);
-    virtual OXMTLV* clone() {
+    virtual OXMTLV* clone() const {
         return new OXMTLV(*this);
     }
     virtual size_t pack(uint8_t *buffer);
     virtual of_error unpack(uint8_t *buffer);
-    uint16_t class_() {
+    uint16_t class_() const {
         return this->class__;
     }
-    uint8_t field() {
+    uint8_t field() const {
         return this->field_;
     }
-    bool has_mask() {
+    bool has_mask() const {
         return this->has_mask_;
     }
     uint8_t length() {
         return this->length_;
     }
-    struct oxm_req oxm_reqs() {
+    struct oxm_req oxm_reqs() const {
         return this->reqs;
     }
 
@@ -110,20 +110,18 @@ class InPort: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    InPort() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    InPort();
     InPort(uint32_t value);
     ~InPort() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual InPort* clone() {
+    virtual InPort* clone() const {
         return new InPort(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint32_t value() {
+    uint32_t value() const {
         return this->value_;
     }
     void value(uint32_t value) {
@@ -135,20 +133,18 @@ class InPhyPort: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    InPhyPort() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    InPhyPort();
     InPhyPort(uint32_t value);
     ~InPhyPort() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual InPhyPort* clone() {
+    virtual InPhyPort* clone() const {
         return new InPhyPort(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint32_t value() {
+    uint32_t value() const {
         return this->value_;
     }
     void value(uint32_t value) {
@@ -161,24 +157,22 @@ private:
     uint64_t value_;
     uint64_t mask_;
 public:
-    Metadata() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    Metadata();
     Metadata(uint64_t value);
     Metadata(uint64_t value, uint64_t mask);
     ~Metadata() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual Metadata* clone() {
+    virtual Metadata* clone() const {
         return new Metadata(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint64_t value() {
+    uint64_t value() const {
         return this->value_;
     }
-    uint64_t mask() {
+    uint64_t mask() const {
         return this->mask_;
     }
     void value(uint64_t value) {
@@ -194,24 +188,22 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    EthDst() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthDst();
     EthDst(EthAddress value);
     EthDst(EthAddress value, EthAddress mask);
     ~EthDst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual EthDst* clone() {
+    virtual EthDst* clone() const {
         return new EthDst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
-    EthAddress mask() {
+    EthAddress mask() const {
         return this->mask_;
     }
     void value(EthAddress value) {
@@ -227,24 +219,22 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    EthSrc() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthSrc();
     EthSrc(EthAddress value);
     EthSrc(EthAddress value, EthAddress mask);
     ~EthSrc() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual EthSrc* clone() {
+    virtual EthSrc* clone() const {
         return new EthSrc(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
-    EthAddress mask() {
+    EthAddress mask() const {
         return this->mask_;
     }
     void value(EthAddress value) {
@@ -259,20 +249,18 @@ class EthType: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    EthType() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    EthType();
     EthType(uint16_t value);
     ~EthType() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual EthType* clone() {
+    virtual EthType* clone() const {
         return new EthType(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -285,24 +273,22 @@ private:
     uint16_t value_;
     uint16_t mask_;
 public:
-    VLANVid() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    VLANVid();
     VLANVid(uint16_t value);
     VLANVid(uint16_t value, uint16_t mask);
     ~VLANVid() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual VLANVid* clone() {
+    virtual VLANVid* clone() const {
         return new VLANVid(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
-    uint16_t mask() {
+    uint16_t mask() const {
         return this->mask_;
     }
     void value(uint16_t value) {
@@ -317,20 +303,18 @@ class VLANPcp: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    VLANPcp() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    VLANPcp();
     VLANPcp(uint8_t value);
     ~VLANPcp() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual VLANPcp* clone() {
+    virtual VLANPcp* clone() const {
         return new VLANPcp(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -342,20 +326,18 @@ class IPDSCP: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPDSCP() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPDSCP();
     IPDSCP(uint8_t value);
     ~IPDSCP() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPDSCP* clone() {
+    virtual IPDSCP* clone() const {
         return new IPDSCP(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -367,20 +349,18 @@ class IPECN: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPECN() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPECN();
     IPECN(uint8_t value);
     ~IPECN() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPECN* clone() {
+    virtual IPECN* clone() const {
         return new IPECN(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -392,20 +372,18 @@ class IPProto: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    IPProto() {
-        create_oxm_req(0x0800, 0x86dd, 0, 0);
-    }
+    IPProto();
     IPProto(uint8_t value);
     ~IPProto() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPProto* clone() {
+    virtual IPProto* clone() const {
         return new IPProto(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -418,26 +396,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv4Src()
-        : value_((uint32_t) 0),
-          mask_((uint32_t) 0) {
-        create_oxm_req(0x0800, 0, 0, 0);
-    }
+    IPv4Src();
     IPv4Src(IPAddress value);
     IPv4Src(IPAddress value, IPAddress mask);
     ~IPv4Src() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv4Src* clone() {
+    virtual IPv4Src* clone() const {
         return new IPv4Src(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(uint32_t value) {
@@ -453,26 +427,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv4Dst()
-        : value_((uint32_t) 0),
-          mask_((uint32_t) 0) {
-        create_oxm_req(0x0800, 0, 0, 0);
-    }
+    IPv4Dst();
     IPv4Dst(IPAddress value);
     IPv4Dst(IPAddress value, IPAddress mask);
     ~IPv4Dst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv4Dst* clone() {
+    virtual IPv4Dst* clone() const {
         return new IPv4Dst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(IPAddress value) {
@@ -487,20 +457,18 @@ class TCPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    TCPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 6, 0);
-    }
+    TCPSrc();
     TCPSrc(uint16_t value);
     ~TCPSrc() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual TCPSrc* clone() {
+    virtual TCPSrc* clone() const {
         return new TCPSrc(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -513,20 +481,18 @@ class TCPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    TCPDst() {
-        create_oxm_req(0x0800, 0x86dd, 6, 0);
-    }
+    TCPDst();
     TCPDst(uint16_t value);
     ~TCPDst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual TCPDst* clone() {
+    virtual TCPDst* clone() const {
         return new TCPDst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -538,20 +504,18 @@ class UDPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    UDPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 17, 0);
-    }
+    UDPSrc();
     UDPSrc(uint16_t value);
     ~UDPSrc() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual UDPSrc* clone() {
+    virtual UDPSrc* clone() const {
         return new UDPSrc(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -563,20 +527,18 @@ class UDPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    UDPDst() {
-        create_oxm_req(0x0800, 0x86dd, 17, 0);
-    }
+    UDPDst();
     UDPDst(uint16_t value);
     ~UDPDst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual UDPDst* clone() {
+    virtual UDPDst* clone() const {
         return new UDPDst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -588,20 +550,18 @@ class SCTPSrc: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    SCTPSrc() {
-        create_oxm_req(0x0800, 0x86dd, 132, 0);
-    }
+    SCTPSrc();
     SCTPSrc(uint16_t value);
     ~SCTPSrc() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual SCTPSrc* clone() {
+    virtual SCTPSrc* clone() const {
         return new SCTPSrc(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -614,20 +574,18 @@ class SCTPDst: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    SCTPDst() {
-        create_oxm_req(0x0800, 0x86dd, 132, 0);
-    }
+    SCTPDst();
     SCTPDst(uint16_t value);
     ~SCTPDst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual SCTPDst* clone() {
+    virtual SCTPDst* clone() const {
         return new SCTPDst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -639,20 +597,18 @@ class ICMPv4Code: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv4Code() {
-        create_oxm_req(0x0800, 0, 1, 0);
-    }
+    ICMPv4Code();
     ICMPv4Code(uint8_t value);
     ~ICMPv4Code() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ICMPv4Code* clone() {
+    virtual ICMPv4Code* clone() const {
         return new ICMPv4Code(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -664,20 +620,18 @@ class ICMPv4Type: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv4Type() {
-        create_oxm_req(0x0800, 0, 1, 0);
-    }
+    ICMPv4Type();
     ICMPv4Type(uint8_t value);
     ~ICMPv4Type() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ICMPv4Type* clone() {
+    virtual ICMPv4Type* clone() const {
         return new ICMPv4Type(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -689,20 +643,18 @@ class ARPOp: public OXMTLV {
 private:
     uint16_t value_;
 public:
-    ARPOp() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPOp();
     ARPOp(uint16_t value);
     ~ARPOp() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ARPOp* clone() {
+    virtual ARPOp* clone() const {
         return new ARPOp(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
     void value(uint16_t value) {
@@ -715,24 +667,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    ARPSPA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPSPA();
     ARPSPA(IPAddress value);
     ARPSPA(IPAddress value, IPAddress mask);
     ~ARPSPA() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ARPSPA* clone() {
+    virtual ARPSPA* clone() const {
         return new ARPSPA(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(IPAddress value) {
@@ -749,24 +699,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    ARPTPA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPTPA();
     ARPTPA(IPAddress value);
     ARPTPA(IPAddress value, IPAddress mask);
     ~ARPTPA() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ARPTPA* clone() {
+    virtual ARPTPA* clone() const {
         return new ARPTPA(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(IPAddress value) {
@@ -782,24 +730,22 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    ARPSHA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPSHA();
     ARPSHA(EthAddress value);
     ARPSHA(EthAddress value, EthAddress mask);
     ~ARPSHA() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ARPSHA* clone() {
+    virtual ARPSHA* clone() const {
         return new ARPSHA(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
-    EthAddress mask() {
+    EthAddress mask() const {
         return this->mask_;
     }
     void value(EthAddress value) {
@@ -812,24 +758,22 @@ private:
     EthAddress value_;
     EthAddress mask_;
 public:
-    ARPTHA() {
-        create_oxm_req(0x0806, 0, 0, 0);
-    }
+    ARPTHA();
     ARPTHA(EthAddress value);
     ARPTHA(EthAddress value, EthAddress mask);
     ~ARPTHA() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ARPTHA* clone() {
+    virtual ARPTHA* clone() const {
         return new ARPTHA(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
-    EthAddress mask() {
+    EthAddress mask() const {
         return this->mask_;
     }
     void value(EthAddress value) {
@@ -843,24 +787,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv6Src() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Src();
     IPv6Src(IPAddress value);
     IPv6Src(IPAddress value, IPAddress mask);
     ~IPv6Src() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6Src* clone() {
+    virtual IPv6Src* clone() const {
         return new IPv6Src(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(IPAddress value) {
@@ -876,24 +818,22 @@ private:
     IPAddress value_;
     IPAddress mask_;
 public:
-    IPv6Dst() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Dst();
     IPv6Dst(IPAddress value);
     IPv6Dst(IPAddress value, IPAddress mask);
     ~IPv6Dst() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6Dst* clone() {
+    virtual IPv6Dst* clone() const {
         return new IPv6Dst(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
-    IPAddress mask() {
+    IPAddress mask() const {
         return this->mask_;
     }
     void value(IPAddress value) {
@@ -909,24 +849,22 @@ private:
     uint32_t value_;
     uint32_t mask_;
 public:
-    IPV6Flabel() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPV6Flabel();
     IPV6Flabel(uint32_t value);
     IPV6Flabel(uint32_t value, uint32_t mask);
     ~IPV6Flabel() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPV6Flabel* clone() {
+    virtual IPV6Flabel* clone() const {
         return new IPV6Flabel(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint32_t value() {
+    uint32_t value() const {
         return this->value_;
     }
-    uint32_t mask() {
+    uint32_t mask() const {
         return this->mask_;
     }
     void value(uint32_t value) {
@@ -941,20 +879,18 @@ class ICMPv6Type: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv6Type() {
-        create_oxm_req(0, 0x86dd, 58, 0);
-    }
+    ICMPv6Type();
     ICMPv6Type(uint8_t value);
     ~ICMPv6Type() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ICMPv6Type* clone() {
+    virtual ICMPv6Type* clone() const {
         return new ICMPv6Type(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -966,20 +902,18 @@ class ICMPv6Code: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    ICMPv6Code() {
-        create_oxm_req(0, 0x86dd, 58, 0);
-    }
+    ICMPv6Code();
     ICMPv6Code(uint8_t value);
     ~ICMPv6Code() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual ICMPv6Code* clone() {
+    virtual ICMPv6Code* clone() const {
         return new ICMPv6Code(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -991,20 +925,18 @@ class IPv6NDTarget: public OXMTLV {
 private:
     IPAddress value_;
 public:
-    IPv6NDTarget() {
-        create_oxm_req(0, 0x86dd, 58, 135);
-    }
+    IPv6NDTarget();
     IPv6NDTarget(IPAddress value);
     ~IPv6NDTarget() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6NDTarget* clone() {
+    virtual IPv6NDTarget* clone() const {
         return new IPv6NDTarget(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    IPAddress value() {
+    IPAddress value() const {
         return this->value_;
     }
     void value(IPAddress value) {
@@ -1016,20 +948,18 @@ class IPv6NDSLL: public OXMTLV {
 private:
     EthAddress value_;
 public:
-    IPv6NDSLL() {
-        create_oxm_req(0, 0x86dd, 58, 136);
-    }
+    IPv6NDSLL();
     IPv6NDSLL(EthAddress value);
     ~IPv6NDSLL() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6NDSLL* clone() {
+    virtual IPv6NDSLL* clone() const {
         return new IPv6NDSLL(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
     void value(EthAddress value) {
@@ -1041,20 +971,18 @@ class IPv6NDTLL: public OXMTLV {
 private:
     EthAddress value_;
 public:
-    IPv6NDTLL() {
-        create_oxm_req(0, 0x86dd, 58, 136);
-    }
+    IPv6NDTLL();
     IPv6NDTLL(EthAddress value);
     ~IPv6NDTLL() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6NDTLL* clone() {
+    virtual IPv6NDTLL* clone() const {
         return new IPv6NDTLL(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    EthAddress value() {
+    EthAddress value() const {
         return this->value_;
     }
     void value(EthAddress value) {
@@ -1066,20 +994,18 @@ class MPLSLabel: public OXMTLV {
 private:
     uint32_t value_;
 public:
-    MPLSLabel() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSLabel();
     MPLSLabel(uint32_t value);
     ~MPLSLabel() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual MPLSLabel* clone() {
+    virtual MPLSLabel* clone() const {
         return new MPLSLabel(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint32_t value() {
+    uint32_t value() const {
         return this->value_;
     }
     void value(uint32_t value) {
@@ -1091,20 +1017,18 @@ class MPLSTC: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    MPLSTC() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSTC();
     MPLSTC(uint8_t value);
     ~MPLSTC() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual MPLSTC* clone() {
+    virtual MPLSTC* clone() const {
         return new MPLSTC(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -1116,20 +1040,18 @@ class MPLSBOS: public OXMTLV {
 private:
     uint8_t value_;
 public:
-    MPLSBOS() {
-        create_oxm_req(0x8847, 0x8848, 0, 0);
-    }
+    MPLSBOS();
     MPLSBOS(uint8_t value);
     ~MPLSBOS() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual MPLSBOS* clone() {
+    virtual MPLSBOS* clone() const {
         return new MPLSBOS(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint8_t value() {
+    uint8_t value() const {
         return this->value_;
     }
     void value(uint8_t value) {
@@ -1142,24 +1064,22 @@ private:
     uint32_t value_;
     uint32_t mask_;
 public:
-    PBBIsid() {
-        create_oxm_req(0x88E7, 0, 0, 0);
-    }
+    PBBIsid();
     PBBIsid(uint32_t value);
     PBBIsid(uint32_t value, uint32_t mask);
     ~PBBIsid() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual PBBIsid* clone() {
+    virtual PBBIsid* clone() const {
         return new PBBIsid(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint32_t value() {
+    uint32_t value() const {
         return this->value_;
     }
-    uint32_t mask() {
+    uint32_t mask() const {
         return this->mask_;
     }
     void value(uint32_t value) {
@@ -1175,21 +1095,19 @@ private:
     uint64_t value_;
     uint64_t mask_;
 public:
-    TUNNELId() {
-        create_oxm_req(0, 0, 0, 0);
-    }
+    TUNNELId();
     TUNNELId(uint64_t value);
     TUNNELId(uint64_t value, uint64_t mask);
     ~TUNNELId() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual TUNNELId* clone() {
+    virtual TUNNELId* clone() const {
         return new TUNNELId(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint64_t value() {
+    uint64_t value() const {
         return this->value_;
     }
     void value(uint64_t value) {
@@ -1202,24 +1120,22 @@ private:
     uint16_t value_;
     uint16_t mask_;
 public:
-    IPv6Exthdr() {
-        create_oxm_req(0, 0x86dd, 0, 0);
-    }
+    IPv6Exthdr();
     IPv6Exthdr(uint16_t value);
     IPv6Exthdr(uint16_t value, uint16_t mask);
     ~IPv6Exthdr() {
     }
     virtual bool equals(const OXMTLV & other);
     OXMTLV& operator=(const OXMTLV& field);
-    virtual IPv6Exthdr* clone() {
+    virtual IPv6Exthdr* clone() const {
         return new IPv6Exthdr(*this);
     }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
-    uint16_t value() {
+    uint16_t value() const {
         return this->value_;
     }
-    uint16_t mask() {
+    uint16_t mask() const {
         return this->mask_;
     }
     void value(uint16_t value) {
@@ -1235,7 +1151,7 @@ private:
     /*Current tlvs present by field*/
     std::vector<uint8_t> curr_tlvs_;
     /*Vector of OXM TLVs*/
-    std::vector<OXMTLV*> oxm_tlvs_;
+    OXMTLV* oxm_tlvs_[OXM_NUM];
 public:
     Match();
     Match(const Match &match);
@@ -1243,7 +1159,7 @@ public:
     ~Match();
     bool operator==(const Match &other) const;
     bool operator!=(const Match &other) const;
-    void swap(Match& first, Match& second);
+    static void swap(Match& first, Match& second);
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
     OXMTLV *oxm_field(uint8_t field);
