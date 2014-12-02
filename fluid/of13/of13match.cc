@@ -2296,13 +2296,13 @@ bool Match::check_dup(OXMTLV *tlv) {
 }
 
 void Match::add_oxm_field(OXMTLV &tlv) {
-    this->curr_tlvs_.push_back(tlv.field());
+    if (!check_dup(&tlv)) this->curr_tlvs_.push_back(tlv.field());
     this->oxm_tlvs_[tlv.field()] = tlv.clone();
     this->length_ += of13::OFP_OXM_HEADER_LEN + tlv.length();
 }
 
 void Match::add_oxm_field(OXMTLV* tlv) {
-    this->curr_tlvs_.push_back(tlv->field());
+    if (!check_dup(tlv)) this->curr_tlvs_.push_back(tlv->field());
     this->oxm_tlvs_[tlv->field()] = tlv;
     this->length_ += of13::OFP_OXM_HEADER_LEN + tlv->length();
 }
