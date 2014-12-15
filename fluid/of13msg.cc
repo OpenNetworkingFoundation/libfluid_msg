@@ -837,9 +837,6 @@ GroupMod::GroupMod(uint32_t xid, uint16_t command, uint8_t type,
       command_(command),
       group_type_(type),
       group_id_(group_id) {
-    this->command_ = command;
-    this->type_ = type;
-    this->group_id_ = group_id;
     this->length_ = sizeof(struct of13::ofp_group_mod);
 }
 
