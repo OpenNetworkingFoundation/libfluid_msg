@@ -231,7 +231,7 @@ Metadata::Metadata(uint64_t value)
 Metadata::Metadata(uint64_t value, uint64_t mask)
     : mask_(0),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_METADATA, true,
-          of13::OFP_OXM_METADATA_LEN * 2) {
+          of13::OFP_OXM_METADATA_LEN) {
     this->value_ = value;
     this->mask_ = mask;
     create_oxm_req(0, 0, 0, 0);
@@ -297,7 +297,7 @@ EthDst::EthDst(EthAddress value)
 
 EthDst::EthDst(EthAddress value, EthAddress mask)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_DST, true,
-        OFP_ETH_ALEN * 2) {
+        OFP_ETH_ALEN) {
     this->value_ = value;
     this->mask_ = mask;
     create_oxm_req(0, 0, 0, 0);
@@ -364,7 +364,7 @@ EthSrc::EthSrc(EthAddress value)
 
 EthSrc::EthSrc(EthAddress value, EthAddress mask)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_ETH_SRC, true,
-        OFP_ETH_ALEN * 2) {
+        OFP_ETH_ALEN) {
     this->value_ = value;
     this->mask_ = mask;
     create_oxm_req(0, 0, 0, 0);
@@ -2130,21 +2130,21 @@ of_error PBBIsid::unpack(uint8_t *buffer) {
 TUNNELId::TUNNELId()
     : mask_(0),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TUNNEL_ID, false,
-          of13::OFP_OXM_METADATA_LEN) {
+          of13::OFP_OXM_TUNNEL_ID_LEN) {
     create_oxm_req(0, 0, 0, 0);
 }
 
 TUNNELId::TUNNELId(uint64_t value)
     : mask_(0),
       OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_TUNNEL_ID, false,
-          of13::OFP_OXM_METADATA_LEN) {
+          of13::OFP_OXM_TUNNEL_ID_LEN) {
     this->value_ = value;
     create_oxm_req(0, 0, 0, 0);
 }
 
 TUNNELId::TUNNELId(uint64_t value, uint64_t mask)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFP_OXM_TUNNEL_ID_LEN, true,
-        of13::OFP_OXM_TUNNEL_ID_LEN * 2) {
+        of13::OFP_OXM_TUNNEL_ID_LEN) {
     this->value_ = value;
     this->mask_ = mask;
     create_oxm_req(0, 0, 0, 0);
@@ -2195,15 +2195,15 @@ of_error TUNNELId::unpack(uint8_t *buffer) {
 
 IPv6Exthdr::IPv6Exthdr()
     : mask_(0),
-      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_VID, false,
-          of13::OFP_OXM_VLAN_VID_LEN) {
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_EXTHDR, false,
+          of13::OFP_OXM_IPV6_EXTHDR_LEN) {
     create_oxm_req(0, 0x86dd, 0, 0);
 }
 
 IPv6Exthdr::IPv6Exthdr(uint16_t value)
     : mask_(0),
-      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_VLAN_VID, false,
-          of13::OFP_OXM_VLAN_VID_LEN) {
+      OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV6_EXTHDR, false,
+          of13::OFP_OXM_IPV6_EXTHDR_LEN) {
     this->value_ = value;
     create_oxm_req(0, 0x86dd, 0, 0);
 }
