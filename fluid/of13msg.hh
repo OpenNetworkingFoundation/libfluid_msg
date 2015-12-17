@@ -105,7 +105,7 @@ public:
 namespace of13 {
 
 /**
- OpenFlow 1.3 OFPT_HELLO message 
+ OpenFlow 1.3 OFPT_HELLO message
  */
 class Hello: public OFMsg {
 private:
@@ -165,7 +165,7 @@ public:
 
 /**
  OpenFlow 1.3 OFPT_EXPERIMENTER message.
- Experimenter messages should inherit from this class. 
+ Experimenter messages should inherit from this class.
  */
 class Experimenter: public OFMsg {
 protected:
@@ -239,7 +239,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_GET_CONFIG_REPLY message. 
+ OpenFlow 1.3 OFPT_GET_CONFIG_REPLY message.
  */
 class GetConfigReply: public SwitchConfigCommon {
 public:
@@ -251,7 +251,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_SET_CONFIG_REPLY message. 
+ OpenFlow 1.3 OFPT_SET_CONFIG_REPLY message.
  */
 class SetConfig: public SwitchConfigCommon {
 public:
@@ -263,7 +263,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_PACKET_OUT message. 
+ OpenFlow 1.3 OFPT_PACKET_OUT message.
  */
 class PacketOut: public PacketOutCommon {
 private:
@@ -284,7 +284,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_PACKET_IN message. 
+ OpenFlow 1.3 OFPT_PACKET_IN message.
  */
 class PacketIn: public PacketInCommon {
 private:
@@ -398,7 +398,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_FLOW_REMOVED message. 
+ OpenFlow 1.3 OFPT_FLOW_REMOVED message.
  */
 class FlowRemoved: public FlowRemovedCommon {
 private:
@@ -443,7 +443,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_PORT_STATUS message. 
+ OpenFlow 1.3 OFPT_PORT_STATUS message.
  */
 class PortStatus: public PortStatusCommon {
 private:
@@ -466,7 +466,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_PORT_MOD message. 
+ OpenFlow 1.3 OFPT_PORT_MOD message.
  */
 class PortMod: public PortModCommon {
 private:
@@ -490,7 +490,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_GROUP_MOD message. 
+ OpenFlow 1.3 OFPT_GROUP_MOD message.
  */
 class GroupMod: public OFMsg {
 private:
@@ -536,7 +536,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_TABLE_MOD message. 
+ OpenFlow 1.3 OFPT_TABLE_MOD message.
  */
 class TableMod: public OFMsg {
 private:
@@ -566,8 +566,8 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_MULTIPART_REQUEST message header. Multipart request 
- messages should inherit from this class. 
+ OpenFlow 1.3 OFPT_MULTIPART_REQUEST message header. Multipart request
+ messages should inherit from this class.
  */
 class MultipartRequest: public OFMsg {
 protected:
@@ -598,7 +598,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_MULTIPART_REPLY message header. Multipart reply 
+ OpenFlow 1.3 OFPT_MULTIPART_REPLY message header. Multipart reply
  messages should inherit from this class.
  */
 class MultipartReply: public OFMsg {
@@ -630,7 +630,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_DESC multipart request. 
+ OpenFlow 1.3 OFPMP_DESC multipart request.
  */
 class MultipartRequestDesc: public MultipartRequest {
 public:
@@ -643,7 +643,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_DESC multipart reply. 
+ OpenFlow 1.3 OFPMP_DESC multipart reply.
  */
 class MultipartReplyDesc: public MultipartReply {
 private:
@@ -669,7 +669,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_FLOW multipart request. 
+ OpenFlow 1.3 OFPMP_FLOW multipart request.
  */
 class MultipartRequestFlow: public MultipartRequest {
 private:
@@ -732,7 +732,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_FLOW multipart reply. 
+ OpenFlow 1.3 OFPMP_FLOW multipart reply.
  */
 class MultipartReplyFlow: public MultipartReply {
 private:
@@ -756,7 +756,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_AGGREGATE multipart request. 
+ OpenFlow 1.3 OFPMP_AGGREGATE multipart request.
  */
 class MultipartRequestAggregate: public MultipartRequest {
 private:
@@ -805,7 +805,7 @@ public:
     void table_id(uint8_t table_id) {
         this->table_id_ = table_id;
     }
-    void out_port(uint16_t out_port) {
+    void out_port(uint32_t out_port) {
         this->out_port_ = out_port;
     }
     void out_group(uint32_t out_group) {
@@ -820,7 +820,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_AGGREGATE multipart reply. 
+ OpenFlow 1.3 OFPMP_AGGREGATE multipart reply.
  */
 class MultipartReplyAggregate: public MultipartReply {
 private:
@@ -858,7 +858,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_TABLE multipart request. 
+ OpenFlow 1.3 OFPMP_TABLE multipart request.
  */
 class MultipartRequestTable: public MultipartRequest {
 public:
@@ -872,7 +872,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_TABLE multipart reply. 
+ OpenFlow 1.3 OFPMP_TABLE multipart reply.
  */
 class MultipartReplyTable: public MultipartReply {
 private:
@@ -896,7 +896,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_PORT_STATS multipart request. 
+ OpenFlow 1.3 OFPMP_PORT_STATS multipart request.
  */
 class MultipartRequestPortStats: public MultipartRequest {
 private:
@@ -919,7 +919,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_PORT_STATS multipart reply. 
+ OpenFlow 1.3 OFPMP_PORT_STATS multipart reply.
  */
 class MultipartReplyPortStats: public MultipartReply {
 private:
@@ -943,7 +943,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_QUEUE multipart request. 
+ OpenFlow 1.3 OFPMP_QUEUE multipart request.
  */
 class MultipartRequestQueue: public MultipartRequest {
 private:
@@ -974,7 +974,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_QUEUE multipart reply. 
+ OpenFlow 1.3 OFPMP_QUEUE multipart reply.
  */
 class MultipartReplyQueue: public MultipartReply {
 private:
@@ -998,7 +998,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP multipart request. 
+ OpenFlow 1.3 OFPMP_GROUP multipart request.
  */
 class MultipartRequestGroup: public MultipartRequest {
 private:
@@ -1021,7 +1021,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP multipart reply. 
+ OpenFlow 1.3 OFPMP_GROUP multipart reply.
  */
 class MultipartReplyGroup: public MultipartReply {
 private:
@@ -1046,7 +1046,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP_DESC multipart request. 
+ OpenFlow 1.3 OFPMP_GROUP_DESC multipart request.
  */
 class MultipartRequestGroupDesc: public MultipartRequest {
 public:
@@ -1059,7 +1059,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP_DESC multipart reply. 
+ OpenFlow 1.3 OFPMP_GROUP_DESC multipart reply.
  */
 class MultipartReplyGroupDesc: public MultipartReply {
 private:
@@ -1084,7 +1084,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP_FEATURES multipart request. 
+ OpenFlow 1.3 OFPMP_GROUP_FEATURES multipart request.
  */
 class MultipartRequestGroupFeatures: public MultipartRequest {
 public:
@@ -1097,7 +1097,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_GROUP_FEATURES multipart reply. 
+ OpenFlow 1.3 OFPMP_GROUP_FEATURES multipart reply.
  */
 class MultipartReplyGroupFeatures: public MultipartReply {
 private:
@@ -1121,7 +1121,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER multipart request. 
+ OpenFlow 1.3 OFPMP_METER multipart request.
  */
 class MultipartRequestMeter: public MultipartRequest {
 private:
@@ -1144,7 +1144,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER multipart reply. 
+ OpenFlow 1.3 OFPMP_METER multipart reply.
  */
 class MultipartReplyMeter: public MultipartReply {
 private:
@@ -1169,7 +1169,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER_CONFIG multipart request. 
+ OpenFlow 1.3 OFPMP_METER_CONFIG multipart request.
  */
 class MultipartRequestMeterConfig: public MultipartRequest {
 public:
@@ -1182,7 +1182,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER_CONFIG multipart reply. 
+ OpenFlow 1.3 OFPMP_METER_CONFIG multipart reply.
  */
 class MultipartReplyMeterConfig: public MultipartReply {
     std::vector<MeterConfig> meter_config_;
@@ -1206,7 +1206,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER_FEATURES multipart request. 
+ OpenFlow 1.3 OFPMP_METER_FEATURES multipart request.
  */
 class MultipartRequestMeterFeatures: public MultipartRequest {
 public:
@@ -1219,7 +1219,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_METER_FEATURES multipart reply. 
+ OpenFlow 1.3 OFPMP_METER_FEATURES multipart reply.
  */
 class MultipartReplyMeterFeatures: public MultipartReply {
 private:
@@ -1243,7 +1243,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_TABLE_FEATURES multipart request. 
+ OpenFlow 1.3 OFPMP_TABLE_FEATURES multipart request.
  */
 class MultipartRequestTableFeatures: public MultipartRequest {
 private:
@@ -1267,7 +1267,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_TABLE_FEATURES multipart reply. 
+ OpenFlow 1.3 OFPMP_TABLE_FEATURES multipart reply.
  */
 class MultipartReplyTableFeatures: public MultipartReply {
 private:
@@ -1291,7 +1291,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_PORT_DESC multipart request. 
+ OpenFlow 1.3 OFPMP_PORT_DESC multipart request.
  */
 class MultipartRequestPortDescription: public MultipartRequest {
 public:
@@ -1304,7 +1304,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPMP_PORT_DESC multipart reply. 
+ OpenFlow 1.3 OFPMP_PORT_DESC multipart reply.
  */
 class MultipartReplyPortDescription: public MultipartReply {
 private:
@@ -1329,7 +1329,7 @@ public:
 
 /**
  OpenFlow 1.3 OFPMP_EXPERIMENTER multipart request.
- Multipart request experimenter messages should inherit from this class. 
+ Multipart request experimenter messages should inherit from this class.
  */
 class MultipartRequestExperimenter: public MultipartRequest {
 protected:
@@ -1355,7 +1355,7 @@ public:
 
 /**
  OpenFlow 1.3 OFPMP_EXPERIMENTER multipart reply.
- Multipart reply experimenter messages should inherit from this class. 
+ Multipart reply experimenter messages should inherit from this class.
  */
 class MultipartReplyExperimenter: public MultipartReply {
 protected:
@@ -1405,7 +1405,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_QUEUE_GET_CONFIG_REQUEST message. 
+ OpenFlow 1.3 OFPT_QUEUE_GET_CONFIG_REQUEST message.
  */
 class QueueGetConfigRequest: public OFMsg {
 private:
@@ -1428,7 +1428,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_QUEUE_GET_CONFIG_REPLY message. 
+ OpenFlow 1.3 OFPT_QUEUE_GET_CONFIG_REPLY message.
  */
 class QueueGetConfigReply: public OFMsg {
 private:
@@ -1460,7 +1460,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_ROLE_REQUEST message. 
+ OpenFlow 1.3 OFPT_ROLE_REQUEST message.
  */
 class RoleRequest: public RoleCommon {
 public:
@@ -1471,7 +1471,7 @@ public:
 };
 
 /**
- OpenFlow 1.3 OFPT_ROLE_REPLY message. 
+ OpenFlow 1.3 OFPT_ROLE_REPLY message.
  */
 class RoleReply: public RoleCommon {
 public:
