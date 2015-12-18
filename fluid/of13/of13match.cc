@@ -510,7 +510,7 @@ size_t VLANVid::pack(uint8_t *buffer) {
         memcpy(buffer + (of13::OFP_OXM_HEADER_LEN + len), &mask, len);
     }
     uint16_t value = hton16(this->value_);
-    memcpy(buffer + of13::OFP_OXM_HEADER_LEN, &value, this->length_);
+    memcpy(buffer + of13::OFP_OXM_HEADER_LEN, &value, len);
     return 0;
 }
 
