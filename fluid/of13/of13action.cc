@@ -407,7 +407,7 @@ SetFieldAction::SetFieldAction(OXMTLV* field)
 }
 
 SetFieldAction::SetFieldAction(const SetFieldAction &other)
-    : set_order_(80) {
+    : set_order_(160) {
     this->type_ = other.type_;
     this->length_ = other.length_;
     this->field_ = other.field_->clone();
