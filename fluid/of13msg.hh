@@ -1172,13 +1172,23 @@ public:
  OpenFlow 1.3 OFPMP_METER_CONFIG multipart request.
  */
 class MultipartRequestMeterConfig: public MultipartRequest {
+private:
+    uint32_t meter_id_;
 public:
     MultipartRequestMeterConfig();
-    MultipartRequestMeterConfig(uint32_t xid, uint16_t flags);
+    MultipartRequestMeterConfig(uint32_t xid, uint16_t flags, uint32_t meter_id);
+    bool operator==(const MultipartRequestMeterConfig &other) const;
+    bool operator!=(const MultipartRequestMeterConfig &other) const;
     ~MultipartRequestMeterConfig() {
     }
     uint8_t* pack();
     of_error unpack(uint8_t *buffer);
+    uint32_t meter_id() {
+        return this->meter_id_;
+    }
+    void meter_id(uint32_t meter_id) {
+        this->meter_id_ = meter_id;
+    }
 };
 
 /**

@@ -2138,20 +2138,49 @@ size_t MultipartReplyMeter::meter_stats_len() {
 
 MultipartRequestMeterConfig::MultipartRequestMeterConfig()
     : MultipartRequest(OFPMP_METER_CONFIG) {
+    this->length_ += sizeof(struct of13::ofp_meter_multipart_request);
 }
 
 MultipartRequestMeterConfig::MultipartRequestMeterConfig(uint32_t xid,
-    uint16_t flags)
-    : MultipartRequest(xid, of13::OFPMP_METER_CONFIG, flags) {
+    uint16_t flags, uint32_t meter_id)
+    : MultipartRequest(xid, of13::OFPMP_METER, flags),
+      meter_id_(meter_id) {
+    this->length_ += sizeof(struct of13::ofp_meter_multipart_request);
+}
+
+bool MultipartRequestMeterConfig::operator==(
+    const MultipartRequestMeterConfig &other) const {
+    return ((MultipartRequest::operator==(other))
+        && (this->meter_id_ == other.meter_id_));
+}
+
+bool MultipartRequestMeterConfig::operator!=(
+    const MultipartRequestMeterConfig &other) const {
+    return !(*this == other);
 }
 
 uint8_t* MultipartRequestMeterConfig::pack() {
     uint8_t* buffer = MultipartRequest::pack();
+    struct of13::ofp_meter_multipart_request *mr =
+        (struct of13::ofp_meter_multipart_request *) (buffer
+            + sizeof(struct of13::ofp_multipart_reply));
+    mr->meter_id = hton32(this->meter_id_);
+    memset(mr->pad, 0x0, 4);
     return buffer;
 }
 
 of_error MultipartRequestMeterConfig::unpack(uint8_t *buffer) {
-    return MultipartRequest::unpack(buffer);
+    struct of13::ofp_meter_multipart_request *mr =
+        (struct of13::ofp_meter_multipart_request *) (buffer
+            + sizeof(struct of13::ofp_multipart_reply));
+    MultipartRequest::unpack(buffer);
+    if (this->length_
+        < sizeof(struct of13::ofp_multipart_request)
+            + sizeof(struct of13::ofp_meter_multipart_request)) {
+        return openflow_error(of13::OFPET_BAD_REQUEST, of13::OFPBRC_BAD_LEN);
+    }
+    this->meter_id_ = ntoh32(mr->meter_id);
+    return 0;
 }
 
 MultipartReplyMeterConfig::MultipartReplyMeterConfig()
