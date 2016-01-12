@@ -71,6 +71,9 @@ public:
     bool operator!=(const MeterBandList &other) const;
     size_t pack(uint8_t* buffer);
     of_error unpack(uint8_t* buffer);
+    std::vector<MeterBand*> meter_bands() const {
+      return std::vector<MeterBand*>(band_list_.begin(), band_list_.end());
+    }
     friend void swap(MeterBandList& first, MeterBandList& second);
     uint16_t length() {
         return this->length_;
