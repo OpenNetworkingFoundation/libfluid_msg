@@ -83,26 +83,26 @@ void Match::nw_proto(uint8_t nw_proto) {
 
 void Match::nw_src(const IPAddress &nw_src) {
     this->nw_src_ = nw_src;
-    this->wildcards_ &= ~of10::OFPFW_NW_DST_ALL;
+    this->wildcards_ &= ~of10::OFPFW_NW_SRC_MASK;
 }
 
 void Match::nw_dst(const IPAddress &nw_dst) {
     this->nw_dst_ = nw_dst;
-    this->wildcards_ &= ~of10::OFPFW_NW_SRC_ALL;
+    this->wildcards_ &= ~of10::OFPFW_NW_DST_MASK;
 }
 
 void Match::nw_src(const IPAddress &nw_src, uint32_t prefix) {
     this->nw_src_ = nw_src;
     uint32_t index = 32 - prefix;
     this->wildcards_ &= ~of10::OFPFW_NW_SRC_MASK;
-    this->wildcards_ |= ((32 - index) << of10::OFPFW_NW_SRC_SHIFT);
+    this->wildcards_ |= (index << of10::OFPFW_NW_SRC_SHIFT);
 }
 
 void Match::nw_dst(const IPAddress &nw_dst, uint32_t prefix) {
     this->nw_dst_ = nw_dst;
     uint32_t index = 32 - prefix;
     this->wildcards_ &= ~of10::OFPFW_NW_DST_MASK;
-    this->wildcards_ |= ((32 - prefix) << of10::OFPFW_NW_DST_SHIFT);
+    this->wildcards_ |= (index << of10::OFPFW_NW_DST_SHIFT);
 }
 
 void Match::tp_src(uint16_t tp_src) {
