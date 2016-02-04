@@ -1739,9 +1739,9 @@ uint8_t* MultipartReplyQueue::pack() {
 
 of_error MultipartReplyQueue::unpack(uint8_t *buffer) {
     MultipartReply::unpack(buffer);
-    uint8_t len = this->length_ - sizeof(struct of13::ofp_multipart_reply);
+    int len = this->length_ - sizeof(struct of13::ofp_multipart_reply);
     uint8_t *p = buffer + sizeof(struct of13::ofp_multipart_reply);
-    while (len) {
+    while (len > 0) {
         of13::QueueStats stat;
         stat.unpack(p);
         this->queue_stats_.push_back(stat);
