@@ -275,7 +275,7 @@ public:
     bool operator!=(const PacketOut &other) const;
     uint8_t* pack();
     of_error unpack(uint8_t *buffer);
-    uint16_t in_port() {
+    uint32_t in_port() {
         return this->in_port_;
     }
     void in_port(uint32_t in_port) {
