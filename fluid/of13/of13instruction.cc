@@ -251,13 +251,15 @@ void WriteActions::actions(ActionSet actions) {
 }
 
 void WriteActions::add_action(Action &action) {
-    this->actions_.add_action(action);
-    this->length_ += action.length();
+    if (this->actions_.add_action(action)) {
+	this->length_ += action.length();
+    }
 }
 
 void WriteActions::add_action(Action* action) {
-    this->actions_.add_action(action);
-    this->length_ += action->length();
+    if (this->actions_.add_action(action)) {
+	this->length_ += action->length();
+    }
 }
 
 size_t WriteActions::pack(uint8_t* buffer) {

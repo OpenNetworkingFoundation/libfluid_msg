@@ -323,6 +323,9 @@ public:
     uint16_t set_order() const {
         return this->set_order_;
     }
+    virtual uint16_t set_sub_order() const {
+	return this->field_ ? this->field_->field() : 0;
+    }
     size_t pack(uint8_t *buffer);
     of_error unpack(uint8_t *buffer);
     virtual SetFieldAction* clone() {
