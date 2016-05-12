@@ -338,7 +338,7 @@ TEST(MultipartReply, MultipartReplyMeter){
 }
 
 TEST(MultipartRequest, MultipartRequestMeterConfig){
-  of13::MultipartRequestMeterConfig src(xid, 0);
+  of13::MultipartRequestMeterConfig src(xid, 0, 1);
   uint8_t* buffer  = src.pack();
   of13::MultipartRequestMeterConfig dst;
   dst.unpack(buffer);
