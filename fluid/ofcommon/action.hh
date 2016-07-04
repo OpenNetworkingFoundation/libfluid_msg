@@ -77,6 +77,7 @@ public:
     }
     void add_action(Action &action);
     void add_action(Action *act);
+    std::list<Action *> release_actions();
     void length(uint16_t length) {
         this->length_ = length;
     }
@@ -114,6 +115,7 @@ public:
     }
     void add_action(Action &action);
     void add_action(Action *act);
+    Action * release_action(uint16_t type);
     void length(uint16_t length) {
         this->length_ = length;
     }

@@ -114,6 +114,19 @@ void InstructionSet::add_instruction(Instruction *inst) {
     this->length_ += inst->length();
 }
 
+Instruction * InstructionSet::release_instruction(uint16_t type) {
+    typedef std::set<Instruction*, comp_inst_set_order>::iterator iterator_t;
+    for (iterator_t it = instruction_set_.begin(); it != instruction_set_.end(); ++it) {
+        if ((*it)->type() == type) {
+            Instruction* inst = *it;
+            this->length_ -= inst->length();
+            instruction_set_.erase(it);
+            return inst;
+        }
+    }
+    return NULL;
+}
+
 Instruction* Instruction::make_instruction(uint16_t type) {
     switch (type) {
         case (of13::OFPIT_GOTO_TABLE): {
@@ -260,6 +273,14 @@ void WriteActions::add_action(Action* action) {
     this->length_ += action->length();
 }
 
+Action* WriteActions::release_action(uint16_t type) {
+    Action* act = this->actions_.release_action(type);    
+    if (!act)
+        return NULL;
+    this->length_ -= act->length();
+    return act;
+}
+
 size_t WriteActions::pack(uint8_t* buffer) {
     struct of13::ofp_instruction_actions *ia =
         (struct of13::ofp_instruction_actions*) buffer;
@@ -309,6 +330,15 @@ void ApplyActions::add_action(Action &action) {
 void ApplyActions::add_action(Action* action) {
     this->actions_.add_action(action);
     this->length_ += action->length();
+}
+
+std::list<Action*> ApplyActions::release_actions() {
+    std::list<Action*> result = this->actions_.release_actions();
+    typedef std::list<Action*>::iterator iterator_t;
+    for (iterator_t it = result.begin(); it != result.end(); ++it) {
+        this->length_ -= (*it)->length(); 
+    }
+    return result;
 }
 
 size_t ApplyActions::pack(uint8_t* buffer) {
