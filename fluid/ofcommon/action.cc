@@ -1,3 +1,4 @@
+#include <iostream>
 #include "action.hh"
 
 namespace fluid_msg {
@@ -135,6 +136,18 @@ void ActionList::add_action(Action * act) {
     this->length_ += act->length();
 }
 
+std::list<Action *> ActionList::release_actions() {
+    std::list<Action*> result;
+    typedef std::list<Action*>::iterator iterator_t;
+    for (iterator_t it = this->action_list_.begin(); it != this->action_list_.end(); ++it) {
+        Action * act = *it;
+        this->length_ -= act->length();
+        result.push_back(act);
+    }
+    this->action_list_.clear();
+    return result;
+}
+
 ActionSet::ActionSet(std::set<Action*> action_set) {
     this->action_set_ = action_set_;
     for (std::set<Action*>::const_iterator it = action_set.begin();
@@ -221,6 +234,19 @@ void ActionSet::add_action(Action &act) {
 void ActionSet::add_action(Action *act) {
     this->action_set_.insert(act);
     this->length_ += act->length();
+}
+
+Action * ActionSet::release_action(uint16_t type) {
+    typedef std::set<Action *, comp_action_set_order>::iterator iterator_t;
+    for (iterator_t it = this->action_set_.begin(); it != this->action_set_.end(); ++it) {
+        if ((*it)->type() == type) {
+            Action* act = *it;
+            this->length_ -= act->length();
+            this->action_set_.erase(it);
+            return act;
+        }
+    }
+    return NULL;
 }
 
 } //End of namespace fluid_msg
