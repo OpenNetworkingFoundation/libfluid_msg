@@ -650,6 +650,14 @@ void FlowMod::add_instruction(Instruction* inst) {
     this->length_ += inst->length();
 }
 
+Instruction * FlowMod::release_instruction(uint16_t type) {
+    Instruction * inst = this->instructions_.release_instruction(type);
+    if (!inst)
+        return NULL;
+    this->length_ -= inst->length();
+    return inst;
+}
+
 FlowRemoved::FlowRemoved()
     : FlowRemovedCommon(of13::OFP_VERSION, of13::OFPT_FLOW_REMOVED),
       table_id_(0),

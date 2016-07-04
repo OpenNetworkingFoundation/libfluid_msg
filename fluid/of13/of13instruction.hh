@@ -76,6 +76,7 @@ public:
     }    
     void add_instruction(Instruction &inst);
     void add_instruction(Instruction *inst);
+    Instruction * release_instruction(uint16_t type);
     void length(uint16_t length) {
         this->length_ = length;
     }
@@ -176,6 +177,7 @@ public:
     void actions(ActionSet actions);
     void add_action(Action &action);
     void add_action(Action* action);
+    Action* release_action(uint16_t type);
 };
 
 class ApplyActions: public Instruction {
@@ -206,6 +208,7 @@ public:
     void actions(ActionList actions);
     void add_action(Action &action);
     void add_action(Action* action);
+    std::list<Action*> release_actions();
 };
 
 class ClearActions: public Instruction {

@@ -395,6 +395,7 @@ public:
     void instructions(InstructionSet instructions);
     void add_instruction(Instruction &inst);
     void add_instruction(Instruction* inst);
+    Instruction * release_instruction(uint16_t type);
 };
 
 /**
