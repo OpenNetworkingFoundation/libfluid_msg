@@ -446,7 +446,7 @@ PacketIn::PacketIn(uint32_t xid, uint32_t buffer_id, uint16_t total_len,
 
 uint16_t PacketIn::length() {
     return sizeof(struct of13::ofp_packet_in) - sizeof(struct of13::ofp_match)
-        + ROUND_UP(this->match_.length(), 8) + this->data_len_ + 2;
+        + ROUND_UP(this->match_.length(), 8) + this->data_len_;
 }
 
 bool PacketIn::operator==(const PacketIn &other) const {
@@ -462,7 +462,9 @@ bool PacketIn::operator!=(const PacketIn &other) const {
 uint8_t* PacketIn::pack() {
     this->length_ = length();
     uint8_t* buffer = OFMsg::pack();
-    size_t padding = ROUND_UP(this->match_.length(), 8) - this->match_.length();
+    size_t padding = ROUND_UP(
+        sizeof(struct of13::ofp_packet_in) - 4 + this->match_.length(), 8)
+        - (sizeof(struct of13::ofp_packet_in) - 4 + this->match_.length());
     struct of13::ofp_packet_in *pi = (struct of13::ofp_packet_in*) buffer;
     pi->buffer_id = hton32(this->buffer_id_);
     pi->total_len = hton16(this->total_len_);
