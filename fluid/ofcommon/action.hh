@@ -29,6 +29,9 @@ public:
     virtual uint16_t set_order() const {
         return 0;
     }
+    virtual uint16_t set_sub_order() const {
+	return 0;
+    }
     uint16_t type() {
         return this->type_;
     }
@@ -84,6 +87,9 @@ public:
 
 struct comp_action_set_order {
     bool operator()(Action * lhs, Action* rhs) const {
+	if (lhs->set_order() == rhs->set_order()) {
+	    return lhs->set_sub_order() < rhs->set_sub_order();
+	}
         return lhs->set_order() < rhs->set_order();
     }
 };
@@ -112,8 +118,8 @@ public:
     std::set<Action*, comp_action_set_order> action_set(){
         return this->action_set_;
     }
-    void add_action(Action &action);
-    void add_action(Action *act);
+    bool add_action(Action &action);
+    bool add_action(Action *act);
     void length(uint16_t length) {
         this->length_ = length;
     }

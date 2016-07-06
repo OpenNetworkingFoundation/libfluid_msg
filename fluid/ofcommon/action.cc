@@ -212,15 +212,20 @@ void swap(ActionSet& first, ActionSet& second) {
     std::swap(first.action_set_, second.action_set_);
 }
 
-void ActionSet::add_action(Action &act) {
+bool ActionSet::add_action(Action &act) {
     Action *actn = act.clone();
-    this->action_set_.insert(actn);
-    this->length_ += act.length();
+    return this->add_action(actn);
 }
 
-void ActionSet::add_action(Action *act) {
-    this->action_set_.insert(act);
-    this->length_ += act->length();
+bool ActionSet::add_action(Action *act) {
+    // Set items are unique.  Only update length if
+    // actually inserted.
+    bool added = this->action_set_.insert(act).second;
+    if (added) {
+	this->length_ += act->length();
+    }
+
+    return added;
 }
 
 } //End of namespace fluid_msg

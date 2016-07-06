@@ -27,6 +27,7 @@ TEST_F(FlowMod13, AllOXMMatch){
 	write_actions->add_action(new of13::GroupAction(1));
 	write_actions->add_action(new of13::SetNWTTLAction(25));
 	write_actions->add_action(new of13::SetFieldAction(new of13::EthSrc("00:00:00:00:00:02")));
+	write_actions->add_action(new of13::SetFieldAction(new of13::EthDst("00:00:00:00:00:04")));
 	write_actions->add_action(new of13::PopVLANAction());
 	write_actions->add_action(new of13::PushMPLSAction(0x8848));	
 	go_to = new of13::GoToTable(2);
@@ -77,3 +78,45 @@ TEST_F(FlowMod13, BAD_PRE_REQ){
 	ASSERT_EQ(0, err);
 	OFMsg::free_buffer(buffer);
 }
+
+TEST_F(FlowMod13, DupSetFieldAction){
+	write_actions = new of13::WriteActions();
+	write_actions->add_action(new of13::SetFieldAction(new of13::EthSrc("00:00:00:00:00:02")));
+	uint16_t l1 = write_actions->length();
+	write_actions->add_action(new of13::SetFieldAction(new of13::EthSrc("00:00:00:00:00:04")));
+
+	uint16_t l2 = write_actions->length();
+
+	// Action set size should not change
+	ASSERT_EQ(write_actions->actions().action_set().size(), 1);
+	
+	// Inserting a duplicate field should not increase the size
+	ASSERT_EQ(l1, l2);
+}
+
+TEST_F(FlowMod13, MultipleSetFieldAction){
+        write_actions = new of13::WriteActions();
+
+	of13::SetFieldAction *src_action = new of13::SetFieldAction(new of13::EthSrc("00:00:00:00:00:02"));
+	write_actions->add_action(src_action);
+	
+	uint16_t l1 = write_actions->length();
+
+	of13::SetFieldAction *dst_action = new of13::SetFieldAction(new of13::EthDst("00:00:00:00:00:04"));
+	write_actions->add_action(dst_action);
+
+	uint16_t l2 = write_actions->length();
+
+	// Primary set ordering should be the same for both actions
+	ASSERT_EQ(src_action->set_order(), dst_action->set_order());
+	// Secondary set ordering should not be the same
+	ASSERT_NE(src_action->set_sub_order(), dst_action->set_sub_order());
+
+	// Inserting a different field should increase the write action size
+	ASSERT_GT(l2, l1);
+
+	// Action set size should have both actions
+	ASSERT_EQ(write_actions->actions().action_set().size(), 2);
+}
+
+
