@@ -209,7 +209,7 @@ public:
     void max_meter(uint32_t max_meter) {
         this->max_meter_ = max_meter;
     }
-    void banc_types(uint32_t band_types) {
+    void band_types(uint32_t band_types) {
         this->band_types_ = band_types;
     }
     void capabilities(uint32_t capabilities) {
