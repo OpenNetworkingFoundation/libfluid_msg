@@ -1985,6 +1985,7 @@ of_error MultipartRequestGroupFeatures::unpack(uint8_t *buffer) {
 
 MultipartReplyGroupFeatures::MultipartReplyGroupFeatures()
     : MultipartReply(OFPMP_GROUP_FEATURES) {
+    this->length_ += sizeof(struct of13::ofp_group_features);
 }
 
 MultipartReplyGroupFeatures::MultipartReplyGroupFeatures(uint32_t xid,
@@ -2273,6 +2274,7 @@ of_error MultipartRequestMeterFeatures::unpack(uint8_t *buffer) {
 
 MultipartReplyMeterFeatures::MultipartReplyMeterFeatures()
     : MultipartReply(OFPMP_METER_FEATURES) {
+    this->length_ += sizeof(struct of13::ofp_meter_features);
 }
 
 MultipartReplyMeterFeatures::MultipartReplyMeterFeatures(uint32_t xid,
