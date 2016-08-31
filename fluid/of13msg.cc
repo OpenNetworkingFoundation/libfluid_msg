@@ -415,6 +415,7 @@ of_error PacketOut::unpack(uint8_t *buffer) {
     this->buffer_id_ = ntoh32(po->buffer_id);
     this->in_port_ = ntoh32(po->in_port);
     this->actions_len_ = ntoh16(po->actions_len);
+    this->actions_.length(this->actions_len_);
     size_t len = this->actions_len_;
     uint8_t * p = buffer + sizeof(struct of13::ofp_packet_out);
     this->actions_.unpack13(p);
