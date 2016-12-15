@@ -2184,7 +2184,7 @@ size_t TUNNELId::pack(uint8_t *buffer) {
 
 of_error TUNNELId::unpack(uint8_t *buffer) {
     OXMTLV::unpack(buffer);
-    this->value_ = ntoh32(*((uint64_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
+    this->value_ = ntoh64(*((uint64_t*) (buffer + of13::OFP_OXM_HEADER_LEN)));
     if (this->has_mask_) {
         size_t len = this->length_ / 2;
         this->mask_ = ntoh64(
