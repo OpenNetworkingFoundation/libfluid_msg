@@ -521,7 +521,7 @@ public:
     std::vector<Bucket> buckets() {
         return this->buckets_;
     }
-    void commmand(uint16_t command) {
+    void command(uint16_t command) {
         this->command_ = command;
     }
     void group_type(uint8_t type) {
