@@ -861,6 +861,7 @@ bool GroupMod::operator!=(const GroupMod &other) const {
 }
 
 void GroupMod::buckets(std::vector<Bucket> buckets) {
+    this->length_ -= buckets_len();
     this->buckets_ = buckets;
     this->length_ += buckets_len();
 }
