@@ -642,7 +642,7 @@ IPv4Src::IPv4Src(IPAddress value)
 
 IPv4Src::IPv4Src(IPAddress value, IPAddress mask)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV4_SRC, true,
-          of13::OFP_OXM_IPV4_LEN),
+          of13::OFP_OXM_IPV4_WITH_MASK_LEN),
       value_(value),
       mask_(mask) {
     // this->value_  = value;
@@ -707,7 +707,7 @@ IPv4Dst::IPv4Dst(IPAddress value)
 
 IPv4Dst::IPv4Dst(IPAddress value, IPAddress mask)
     : OXMTLV(of13::OFPXMC_OPENFLOW_BASIC, of13::OFPXMT_OFB_IPV4_DST, true,
-          of13::OFP_OXM_IPV4_LEN),
+          of13::OFP_OXM_IPV4_WITH_MASK_LEN),
       value_(value),
       mask_(mask) {
     // this->value_  = value;

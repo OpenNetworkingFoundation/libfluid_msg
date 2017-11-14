@@ -244,6 +244,7 @@ const uint8_t OFP_OXM_IP_DSCP_LEN = 1;
 const uint8_t OFP_OXM_IP_ECN_LEN = 1;
 const uint8_t OFP_OXM_IP_PROTO_LEN = 1;
 const uint8_t OFP_OXM_IPV4_LEN = 4;
+const uint8_t OFP_OXM_IPV4_WITH_MASK_LEN = 8;
 const uint8_t OFP_OXM_TP_LEN = 2;
 const uint8_t OFP_OXM_ARP_OP_LEN = 2;
 const uint8_t OFP_OXM_ICMP_TYPE_LEN = 1;
